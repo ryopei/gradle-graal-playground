@@ -8,12 +8,9 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
-import org.omg.SendingContext.RunTime
 
-fun main(args: Array<String>) {
-
+fun main() {
     embeddedServer(CIO, 8080) {
-
         routing {
             get("/") {
                 call.respondText("My Example Blog", ContentType.Text.Html)
