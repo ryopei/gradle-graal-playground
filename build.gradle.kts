@@ -12,7 +12,13 @@ repositories {
 }
 
 dependencies {
+    val ktor_version = "1.4.1"
     implementation(kotlin("stdlib"))
+    implementation("io.ktor:ktor-server-core:$ktor_version")
+    implementation("io.ktor:ktor-server-cio:$ktor_version")
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("org.slf4j:slf4j-simple:2.0.0-alpha1")
 }
 
 application {
@@ -26,6 +32,12 @@ graal {
     windowsVsEdition("Community")
     mainClass(application.mainClassName)
     outputName("app")
+    option("--no-fallback")
+    option("--enable-all-security-services")
+    option("--report-unsupported-elements-at-runtime")
+    option("-H:ReflectionConfigurationFiles=reflect-config.json")
+    option("-H:ResourceConfigurationFiles=resource-config.json")
+    option("--initialize-at-build-time=io.ktor,kotlinx,kotlin,org.slf4j")
 }
 
 tasks {
